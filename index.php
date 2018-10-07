@@ -28,16 +28,21 @@
 				include('connexion.php');
 				//recuperation du login dans une variable de session
 				$_SESSION["nom_user"] = $_POST['login'];
-				echo
-				$req = $linkpdo->prepare('SELECT role_user FROM user WHERE login_user = :login AND mdp_user= :password');
+				
+				
+				
+
+				$req = $linkpdo->prepare('SELECT role_user, id_user FROM user WHERE login_user = :login AND mdp_user= :password');
 				$req->execute(array('login' => $_POST['login'], 'password' => $_POST['password']));
 				$data= $req->fetch();
 				if ($data) {
 					var_dump($data);
 					//affichage de la case role_user du tableau $data, alimenté par le fetch sur le résultat de la requête $req
 					echo $data['role_user'];
+					//recuperation de l'id user dans une variable de session
+					$_SESSION["id_user"]=$data['id_user'];
 					//acces à l'accueil
-					header("Location: accueil.php");
+					header("Location: accueil_prof.php");
 					} else echo('Erreur. Vérifiez vos identifiants puis essayez à nouveau.');}?>
 	</body>
 </html>
