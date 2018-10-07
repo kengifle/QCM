@@ -92,7 +92,7 @@
 			<!--question-->
 			<label for="title">QUESTION :</label>
 			<div><input type="text" name ="texte_question" value ="écrivez une question"></div>
-			<div></div>
+			div
 			<label for="title">REPONSES :</label>
 			<!--reponse 1-->
 			<div><input type="text" name='label_reponse1' value ="écrivez la réponse 1"></div>

@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>affichage question</title>
+	<title>affichage questions</title>
 </head>
 <body>
 <form action="question_afficher.php" method="POST ">
