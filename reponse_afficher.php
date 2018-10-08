@@ -8,7 +8,6 @@
 <body>
 <form action="reponse_afficher.php" method="POST ">
 </form>
-
 <table>
 <thead>
 	<tr>	
@@ -19,14 +18,10 @@
 	</tr>
 </thead>
 <tbody>
-
 <?php include('connexion.php');?>
-
 <?php
 $reponse = $linkpdo->query("SELECT * FROM reponse");
-  
 // On affiche le resultat
-
  while ($donnees = $reponse->fetch()) {?>
 			<?php?>
 			<tr>
@@ -35,19 +30,10 @@ $reponse = $linkpdo->query("SELECT * FROM reponse");
 				<td><?php echo ($donnees['validite']); ?></td>
 				<td><?php echo ($donnees['id_question_fk']); ?></td>
 			</tr>
-			<?php } ?>   
-
-   
-  
- 
-     
+			<?php } ?>  
 <?php
 $reponse->closeCursor();
 ?>
-
 </tbody></table>
-
 </body>
-	
-
 </html

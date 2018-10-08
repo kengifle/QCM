@@ -15,7 +15,9 @@
 
 		<p>
 
-		<p><a href="question_afficher.php">Voulez-vous afficher les questions?</a></p>
+		<p><a href="question_afficher.php">Voulez-vous afficher TOUTES les questions?</a></p>
+
+		<p><a href="question_afficher1question.php">Voulez-vous afficher UNE question en particulier?</a></p>
 
 		<p><a href="reponse_afficher.php">Voulez-vous afficher les réponses?</a></p>
 		<!--lien vers page deconnexion qui detruira la session et renverra à l'index-->
