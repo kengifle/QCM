@@ -6,7 +6,7 @@
 		<title>affichage questions</title>
 	</head>
 	<body>
-		<form action="question_afficher.php" method="POST ">
+		<form action="question_afficher_toutes.php" method="POST ">
 		</form>
 		<table>
 			<thead>
@@ -21,6 +21,7 @@
 				<?php include('connexion.php');?>
 				<?php
 				$reponse = $linkpdo->query("SELECT * FROM question");
+				
 				// On affiche le resultat
 				while ($donnees = $reponse->fetch()) {?>
 				<?php?>
@@ -31,9 +32,14 @@
 					<td><?php echo ($donnees['id_theme_fk']); ?></td>
 				</tr>
 				<?php } ?>
+				
+				
+				
+				
 				<?php
 				$reponse->closeCursor();
 				?>
 			</tbody></table>
 		</body>
+		
 	</html>
