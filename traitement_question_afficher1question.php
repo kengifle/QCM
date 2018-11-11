@@ -1,9 +1,5 @@
 <?php session_start()?>
 <!--affichage de la question-->
-
-
-
-
 <?php if(isset($_POST['validation_recherche_question'])){include('connexion.php');
 //$_SESSION["id_question_a_modifier"] = $_POST['liste_de_questions'];
 //recuperation de l'id de la question a afficher/modifier
@@ -31,7 +27,6 @@ $req_afficher_question = $linkpdo->query("SELECT * FROM question where id_questi
 			<td><?php echo ($donnees['id_theme_fk']); ?></td>
 		</tr>
 		<?php } ?>
-
 		<table>
 			<thead>
 				<tr>
@@ -54,18 +49,17 @@ $req_afficher_question = $linkpdo->query("SELECT * FROM question where id_questi
 					<td><?php echo ($donnees2['id_reponse']); ?></td>
 					<td><?php echo ($donnees2['label_reponse']); ?></td>
 					<td><?php echo ($donnees2['validite']); ?>
-					<td><?php echo ($donnees2['id_question_fk']); ?></td>
-				</tr><?php } ?>
+						<td><?php echo ($donnees2['id_question_fk']); ?></td>
+					</tr><?php } ?>
+				</tbody></table>
+				<?php
+				$req_afficher_reponses->closeCursor();}
+				?>
 			</tbody></table>
-			<?php
-			$req_afficher_reponses->closeCursor();}
-			?>
 		</tbody></table>
-					</tbody></table>
-<form action="question_modifier1question.php" method="POST">
-					<input type="text" name= "id_question_a_modifier" value = "<?php echo $this_id_question;?>">		
-					<input type="submit" name="validation_modification" value="modifier?"></div>
-</form>
-				<a href="question_afficher1question.php">Retour</a>
+		<form action="question_modifier1question.php" method="POST">
+			<input type="text" name= "id_question_a_modifier" value = "<?php echo $this_id_question;?>">
+			<input type="submit" name="validation_modification" value="modifier?"></div>
+		</form>
+		<a href="question_afficher1question.php">Retour</a>
 		<!--modification de la question-->
-		

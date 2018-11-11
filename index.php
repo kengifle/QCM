@@ -1,5 +1,4 @@
 <?php session_start()?>
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -7,7 +6,7 @@
 		<title>Document</title>
 	</head>
 	<body>
-			<div>
+		<div>
 			<form action="index.php" method="post" >
 				<fieldset>
 					<legend>Bonjour.</legend>
@@ -19,9 +18,9 @@
 		</div>
 		<!--//si bouton submit :
 		//connexion à la base
-		//preparation de requête sur la présence d'une ligne 'login + mdp' dans la base 
+		//preparation de requête sur la présence d'une ligne 'login + mdp' dans la base
 		//Exécution de la requête avec les paramètres passés sous forme de tableau associatif
-		//$data récupère le résultat de la requête, si il y en a un, sous forme de tableau 
+		//$data récupère le résultat de la requête, si il y en a un, sous forme de tableau
 		//pas besoin de parcours : si $data existe, authentification ok-->
 		<?php
 			if(isset($_POST['validationLogin'])){
@@ -38,11 +37,11 @@
 					//recuperation de l'id user dans une variable de session
 					$_SESSION["id_user"]=$data['id_user'];
 					//acces à l'accueil
-					if ($_SESSION['role_user'] = "prof"){
-					header("Location: accueil_prof.php");}
-					if ($_SESSION['role_user'] = "etu"){
-						header("Location: accueil_etu.php");}
-
-					} else echo('Erreur. Vérifiez vos identifiants puis essayez à nouveau.');}?>
+					//if ($_SESSION['role_user'] = "prof"){
+					header("Location: accueil_prof.php");
+					//}
+					//if ($_SESSION['role_user'] = "etu"){
+						//header("Location: accueil_etu.php");}
+		} else echo('Erreur. Vérifiez vos identifiants puis essayez à nouveau.');}?>
 	</body>
 </html>
