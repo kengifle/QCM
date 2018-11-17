@@ -29,11 +29,12 @@ if (!$req_afficher_qcm) {echo ("ERREUR SYSTEME") ;}
 //on affiche un tableau pour chaque question puis un tableau avec chacune des réponses à cette question
 //les questions et leurs réponses sont numérotées pour l'affichage
 //la validité de chaque réponse est fournie sous forme de string
-$indice_question = 1;
+$indice_question = 0;
+
 // AFFICHER LA 1e QUESTION
 //$donnees = $req_afficher_qcm->fetch(); <!--
 while ($donnees = $req_afficher_qcm->fetch()) {?>
-
+<form action="traitement_valider_reponse.php" method="GET">
 <table border ="1">
 	<p>Question :</p>
 	<tbody>
@@ -44,8 +45,12 @@ while ($donnees = $req_afficher_qcm->fetch()) {?>
 				<?php $_SESSION['id_question']=$question;?>
 				<tr><td><?php echo ($donnees['label_question']); ?></td></tr>
 			</tr>
-			<?php $indice_question++;
-			//echo $this_id_qcm;?>
+			<?php 
+			
+			
+			$indice_question++;
+			//echo $this_id_qcm;
+			echo ('id question : '.$question);?>
 		</table>
 		<p>Reponses possibles</p>
 		<?php $req_afficher_reponses = $linkpdo->query("SELECT distinct  `id_reponse`, `label_reponse`, `validite`, 
@@ -56,12 +61,11 @@ while ($donnees = $req_afficher_qcm->fetch()) {?>
 		<thead></thead>
 		<tbody>
 			<tr>
-				
 				<td><?php echo ($indice_reponse." ".$donnees['label_reponse']); ?></td>
 				<td><?php if($donnees['validite'] == "1"){ echo ("/ vrai");} else {echo ("/ faux");}?></td>
 			</tr>
-			
-			<?php $indice_reponse++;
+			<?php $_SESSION["indice_reponse"] = $indice_reponse;
+			 $indice_reponse=+1;
 			//echo $this_id_qcm;?>
 			
 		</tbody>
@@ -70,32 +74,33 @@ while ($donnees = $req_afficher_qcm->fetch()) {?>
 </tbody></table>
 
 
-<form action="traitement_valider_reponse.php" method="POST">
+<!-- <form action="traitement_valider_reponse.php" method="POST"> -->
 			<!--affichage de la liste des questions dans un select-->
 			<?php } ?>
 			<?php
 			include('connexion.php');
-			$reponse = $linkpdo->query("SELECT label_reponse, id_reponse, validite FROM reponse, question where id_question = `reponse`.`id_question_fk` and id_question = $question");?>
-			<select title ="choississez dans la liste" name="liste_de_reponses"><?php
-				foreach ($reponse as $data)
+			$reponse = $linkpdo->query("SELECT label_reponse, id_reponse, validite FROM reponse, question 
+			where id_question = `reponse`.`id_question_fk` and id_question = $question");?>
+
+			<select title ="choississez dans la liste" 
+			<?php echo'name= "liste_de_questions'.$indice_question.'">';?>
+			 >
+			 <?php foreach ($reponse as $data)
+			
+			 //changement a operer ci dessous, le id reponse ne convient pas en value?
 				{echo '<option value="' . $data['id_reponse'] . '">' . $data['label_reponse'] . '</option>';}
 			?></select>
 			
-			
-			
-
-			
-
-
-
 
 
 <?php } ?>
 <?php
+
 $req_afficher_qcm->closeCursor();
+$_SESSION["indice_question"] = $indice_question;
 ?><br><br><br>
- <input type="submit" value= "valider vos réponses?" name="repondre_question">
-		</form>
+<input type="submit" value= "valider vos réponses?" name="repondre_question">
+</form>
 
 <a href="accueil_prof.php">Retour</a>
 </body>

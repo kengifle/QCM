@@ -23,7 +23,7 @@
 				$reponse = $linkpdo->query("SELECT * FROM reponse");
 				// On affiche le resultat
 				while ($donnees = $reponse->fetch()) {?>
-				<?php?>
+				
 				<tr>
 					<td><?php echo ($donnees['id_reponse']); ?></td>
 					<td><?php echo ($donnees['label_reponse']); ?></td>
