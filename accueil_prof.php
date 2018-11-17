@@ -18,6 +18,7 @@
 		<p><a href="qcm_ajouter.php">"Voulez vous créer un nouveau Qcm?</a></p>
 		<p><a href="traitement_qcm_ajouter.php">"Voulez ajouter une question à un Qcm?</a></p>
 		<p><a href="reponse_afficher.php">Voulez-vous afficher les réponses?</a></p>
+		<p><a href="qcm_repondre_qcm.php">Voulez-repondre à un qcm ?</a></p>
 		<!--lien vers page deconnexion qui detruira la session et renverra à l'index-->
 		<a href="deconnexion.php"> se deconnecter </a></p>
 	</body>
