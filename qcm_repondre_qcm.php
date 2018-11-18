@@ -15,7 +15,7 @@
 		<?php
 include('connexion.php');
 $reponse = $linkpdo->query("SELECT label_qcm, id_qcm_fk, id_user_fk FROM qcm");?>
-		<select title="choississez dans la liste" name="liste_de_qcm">
+		<select title="choisissez dans la liste" name="liste_de_qcm">
 			<?php
 foreach ($reponse as $data)
 {echo '<option value="' . $data['id_qcm_fk'] . '">' . $data['label_qcm'] . '</option>';}
@@ -57,7 +57,7 @@ foreach ($reponse as $data)
 	//formulaire généré en php depuis la bdd qui sera traité page traitement_valider_reponse
 	while ($donnees = $req_afficher_qcm->fetch()) {?>
 	<br>
-	<form action="traitement_valider_reponse.php" method="GET">
+	<form action="traitement_valider_reponse.php" method="POST">
 
 		<br><br>
 		<table border="1">
@@ -67,7 +67,7 @@ foreach ($reponse as $data)
 						<td>
 							<!-- affichage des questions -->
 							<?php $indice_question++;
-		echo ("question no : ".$indice_question);
+		echo ("Question numéro ".$indice_question);
 		$question = $donnees['id_question']; ?>
 						</td>
 						<?php $_SESSION['id_question']=$question;?>
@@ -92,10 +92,10 @@ foreach ($reponse as $data)
 					<tbody>
 						<tr>
 							<td>
-								<?php echo ($indice_rep." ) ".$donnees['label_reponse']); ?>
+								<?php echo ($indice_rep." / ".$donnees['label_reponse']); ?>
 							</td>
 							<td>
-								<?php if($donnees['validite'] == "1"){ echo ("/ vrai");} else {echo ("/ faux");}?>
+								<?php //if($donnees['validite'] == "1"){ echo ("/ vrai");} else {echo ("/ faux");}?>
 							</td>
 						</tr>
 						<?php $_SESSION["indice_reponse"] = $indice_rep;
@@ -124,7 +124,7 @@ foreach ($reponse as $data)
 		<br><br><br>
 		<input type="submit" value="valider vos réponses?" name="repondre_question">
 	</form>
-	<a href="accueil_prof.php">Retour</a>
+	
 
 	<?php } ?>
 </body>
