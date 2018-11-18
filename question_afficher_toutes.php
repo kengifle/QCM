@@ -11,20 +11,18 @@
 		<table>
 			<thead>
 				<tr>
-					<th>id_question</th>
-					<th>label_question</th>
-					<th>user_question</th>
-					<th>theme_question</th>
+					<th>No</th>
+					<th>question</th>
+					<th>utilisateur</th>
+					<th>theme</th>
 				</tr>
 			</thead>
 			<tbody>
 				<?php include('connexion.php');?>
 				<?php
 				$reponse = $linkpdo->query("SELECT * FROM question");
-				
-				// On affiche le resultat
-				while ($donnees = $reponse->fetch()) {?>
-				<?php?>
+				// On affiche le resultat dans le tableau
+				while ($donnees = $reponse->fetch()) {?>	
 				<tr>
 					<td><?php echo ($donnees['id_question']); ?></td>
 					<td><?php echo ($donnees['label_question']); ?></td>
@@ -32,14 +30,10 @@
 					<td><?php echo ($donnees['id_theme_fk']); ?></td>
 				</tr>
 				<?php } ?>
-				
-				
-				
-				
 				<?php
 				$reponse->closeCursor();
 				?>
 			</tbody></table>
 		</body>
-		
+		<?php include "footer.html"?>
 	</html>

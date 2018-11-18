@@ -18,19 +18,19 @@ if (!$req_afficher_qcm) {echo ("ERREUR SYSTEME") ;}
 //la validité de chaque réponse est fournie sous forme de string
 $indice_question = 1;
 while ($donnees = $req_afficher_qcm->fetch()) {?>
+<br>
 <table border ="1">
-	<p>Question :</p>
 	<tbody>
 		<table>
 			<tr>
-				<td><?php echo ("question no : ".$indice_question);
+				<td><?php echo ("Question n° : ".$indice_question);
 				$question = $donnees['id_question']; ?></td>
 				<tr><td><?php echo ($donnees['label_question']); ?></td></tr>
 			</tr>
 			<?php $indice_question++;
 			//echo $this_id_qcm;?>
 		</table>
-		<p>Reponses possibles</p>
+		<p>Reponses possibles :</p>
 		<?php $req_afficher_reponses = $linkpdo->query("SELECT distinct  `id_reponse`, `label_reponse`, `validite`, `reponse`.`id_question_fk` FROM question, qcm, contenir, reponse where $question = `reponse`.`id_question_fk` and `reponse`.`id_question_fk`= `contenir`.`id_question_fk` and `contenir`.`id_qcm_fk` = $this_id_qcm");
 		$indice_reponse = 1;
 		while ($donnees = $req_afficher_reponses->fetch()) {?>
@@ -38,7 +38,7 @@ while ($donnees = $req_afficher_qcm->fetch()) {?>
 		<thead></thead>
 		<tbody>
 			<tr>
-				<td><?php echo ($indice_reponse); ?></td>
+				<td><?php echo ($indice_reponse.') '); ?></td>
 				<td><?php echo ($donnees['label_reponse']); ?></td>
 				<td><?php if($donnees['validite'] == "1"){ echo ("/ vrai");} else {echo ("/ faux");}?></td>
 			</tr>

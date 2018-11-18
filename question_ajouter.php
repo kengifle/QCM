@@ -1,79 +1,87 @@
 <?php session_start()
-//principe : une requête ajoute une question dans la table question. 4 requetes ajoutent 4 reponses dans la table reponses en utilisant l'id de la question.
-//le theme fournit une valeur par un select alimenté par l'id_user du theme.
-//le id_user est récupéré dans sa variable de session pour réaliser l'insert question. Le id_question est récupéré dans une
-//variable de session après l'insertion de la question et avant l'insertion des réponses.
-//la variable de session 'id_question' est utilisée pour alimenter le champ clé étrangère de la table reponses avec la valeur de l'id de la question inséreée
-// (last insert id) avant la fin du script.
+//principe : une requête ajoute une question dans la table question.
+//4 requetes ajoutent 4 reponses dans la table reponses en utilisant l'id de la question.
+//le theme fournit une valeur depuis un select alimenté par l'id_user du theme.
+//le id_user est récupéré dans sa variable de session pour réaliser l'insert question.
+//Le id_question est récupéré dans une variable de session après l'insertion de la question et avant l'insertion des réponses.
+//la variable de session 'id_question' est utilisée pour alimenter le champ clé étrangère de la table reponses
+// avec la valeur de l'id de la question inséreée : (last insert id) avant la fin du script.
 ?>
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<title>Ajouter une question</title>
-	</head>
-	<body>
-		<!--formulaire-->
-		<form action="question_ajouter.php" method="POST">
-			<label for="title">Theme :</label>
-			<div>
-				
-				<?php
+
+<head>
+	<meta charset="UTF-8">
+	<title>Ajouter une question</title>
+</head>
+
+<body>
+	<!--formulaire : traitement du formulaire intégré sur la page en cours-->
+	<form action="question_ajouter.php" method="POST">
+		<label for="title">Theme :</label>
+		<div>
+
+			<?php
 				include('connexion.php');
+				//select pour le theme, values = id_theme
 				$reponse = $linkpdo->query("SELECT id_theme, label_theme FROM theme");?>
-				<select title ="choississez dans la liste" name="id_theme"><?php
+			<select title="choississez dans la liste" name="id_theme">
+				<?php
 						foreach ($reponse as $data)
 						{
 						echo '<option value="' . $data['id_theme'] . '">' . $data['label_theme'] . '</option>';
 						}
 				?></select>
-			</div>
-			<!--question-->
-			<label for="title">QUESTION :</label>
-			<div><input type="text" name ="texte_question" value ="écrivez une question"></div>
-			<label for="title">REPONSES :</label>
-			<!--reponse 1-->
-			<div><input type="text" name='label_reponse1' value ="écrivez la réponse 1"></div>
-			<div><input type="radio" name="bonne_reponse1" value="1" checked> Vrai<br>
-				<input type="radio" name="bonne_reponse1" value ="0"> Faux<br></div>
-				<!--reponse 2-->
-				<div><input type="text" name='label_reponse2' value ="écrivez la réponse 2"></div>
-				<div><input type="radio" name="bonne_reponse2" value="1" checked> Vrai<br>
-					<input type="radio" name="bonne_reponse2" value ="0"> Faux<br></div>
-					<!--reponse 3-->
-					<div><input type="text" name='label_reponse3' value ="écrivez la réponse 3"></div>
-					<div><input type="radio" name="bonne_reponse3" value="1" checked> Vrai<br>
-						<input type="radio" name="bonne_reponse3" value ="0"> Faux<br></div>
-						<!--reponse 4-->
-						<div><input type="text" name='label_reponse4' value ="écrivez la réponse 4"></div>
-						<div><input type="radio" name="bonne_reponse4" value="1" checked> Vrai<br>
-							<input type="radio" name="bonne_reponse4" value ="0"> Faux<br></div>
-							<!--submit-->
-							<input type="submit" name ="validation_question" value = "ajouter la question">
-						</form>
-						<button onclick="window.history.back()">Retour</button>
-						
-					</body>
-				</html>
-				<?php
+		</div>
+		<!--question-->
+		<label for="title">QUESTION :</label>
+		<div><input type="text" name="texte_question" value="écrivez une question"></div>
+		<label for="title">REPONSES :</label>
+		<!--reponse 1-->
+		<div><input type="text" name='label_reponse1' value="écrivez la réponse 1"></div>
+		<div><input type="radio" name="bonne_reponse1" value="1" checked> Vrai<br>
+			<input type="radio" name="bonne_reponse1" value="0"> Faux<br></div>
+		<!--reponse 2-->
+		<div><input type="text" name='label_reponse2' value="écrivez la réponse 2"></div>
+		<div><input type="radio" name="bonne_reponse2" value="1" checked> Vrai<br>
+			<input type="radio" name="bonne_reponse2" value="0"> Faux<br></div>
+		<!--reponse 3-->
+		<div><input type="text" name='label_reponse3' value="écrivez la réponse 3"></div>
+		<div><input type="radio" name="bonne_reponse3" value="1" checked> Vrai<br>
+			<input type="radio" name="bonne_reponse3" value="0"> Faux<br></div>
+		<!--reponse 4-->
+		<div><input type="text" name='label_reponse4' value="écrivez la réponse 4"></div>
+		<div><input type="radio" name="bonne_reponse4" value="1" checked> Vrai<br>
+			<input type="radio" name="bonne_reponse4" value="0"> Faux<br></div>
+		<!--submit-->
+		<input type="submit" name="validation_question" value="ajouter la question">
+	</form>
+	<button onclick="window.history.back()">Retour</button>
+
+</body>
+<?php include "footer.html"?>
+
+</html>
+<!--PHP TRAITEMENT DU FORMULAIRE-->
+<?php
 				//initialisation des variables
 				$id_theme=0;
 				$label_question="";
 				$id_user=$_SESSION["id_user"];
 				if(isset($_POST['validation_question'])){
 					include('connexion.php');
-				//QUESTION
-					//initialisation des variables avec le contenu des input du formulaire
+			//QUESTION
+						//initialisation des variables avec le contenu des input du formulaire
 					$id_theme=$_POST["id_theme"];
 					$label_question = $_POST["texte_question"];
 					$req = $linkpdo->prepare('INSERT INTO question (label_question, id_user_fk, id_theme_fk) VALUES(:label_question, :id_user_fk, :id_theme_fk)');
 						///Exécution de la requête
 					$req->execute(array('label_question' => $label_question,'id_user_fk' => $_SESSION['id_user'],'id_theme_fk' => $id_theme));
-					//recuperation de l'id_question dans une variable de session
+						//recuperation de l'id_question dans une variable de session
 					$_SESSION['id_question'] = $linkpdo->lastInsertId();
-					//echo($_SESSION['id_question']);
-				//REPONSES
-					//reponse 1
+						//echo($_SESSION['id_question']);
+			//REPONSES
+				//reponse 1
 					$label_reponse1="";
 					$validite1=0;
 					$label_reponse1 = $_POST['label_reponse1'];

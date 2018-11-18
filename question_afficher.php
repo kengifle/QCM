@@ -11,19 +11,18 @@
 		<table>
 			<thead>
 				<tr>
-					<th>id_question</th>
-					<th>label_question</th>
-					<th>user_question</th>
-					<th>theme_question</th>
+					<th>No</th>
+					<th>question</th>
+					<th>utilisateur</th>
+					<th>theme</th>
 				</tr>
 			</thead>
 			<tbody>
 				<?php include('connexion.php');?>
 				<?php
 				$reponse = $linkpdo->query("SELECT * FROM question");
-				// On affiche le resultat
+				// On affiche le resultat dans un tableau
 				while ($donnees = $reponse->fetch()) {?>
-				<?php?>
 				<tr>
 					<td><?php echo ($donnees['id_question']); ?></td>
 					<td><?php echo ($donnees['label_question']); ?></td>
@@ -36,4 +35,5 @@
 				?>
 			</tbody></table>
 		</body>
+		<?php include "footer.html"?>
 	</html>

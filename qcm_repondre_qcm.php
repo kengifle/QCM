@@ -9,7 +9,7 @@
 		<?php include('connexion.php');?>
 		<!--formulaire-->
 		<form action="traitement_qcm_repondre_qcm.php" method="POST">
-			<!--affichage de la liste des questions dans un select-->
+			<!--affichage de la liste des qcm dans un select dont la value est l'id_qcm-->
 			<?php
 			include('connexion.php');
 			$reponse = $linkpdo->query("SELECT label_qcm, id_qcm_fk, id_user_fk FROM qcm");?>
@@ -20,4 +20,5 @@
 			<input type="submit" value= "repondre au qcm?" name="repondre_qcm">
 		</form>
 		</body>
+		<?php include "footer.html"?>
 	</html>
