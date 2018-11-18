@@ -12,6 +12,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Félicitations</title>
+	<?php include "header.html"?> 
 </head>
 <body>
 	<p>Vous venez de répondre au questionnaire : <?php echo $_SESSION['id_qcm'];?></p>
@@ -20,7 +21,7 @@
 $nbre_de_questions = $_SESSION['indice_question'];
 $id_user = $_SESSION["id_user"];
 $id_qcm = $_SESSION["id_qcm"];
-for ($i = $nbre_de_question; $i >0; $i --){
+for ($i = $nbre_de_questions; $i >0; $i --){
 	echo ('yo   '.$nbre_de_questions);
 	$reponse = $_POST['liste_de_questions'.$nbre_de_questions];
 	echo $reponse;
@@ -34,28 +35,37 @@ for ($i = $nbre_de_question; $i >0; $i --){
 	<form action="traitement_valider_reponse.php" method = "POST">
 		<input type="submit" name ="verdict" value = "connaître votre note? ">
 	</form>
+	<br><br>
 <?php
 	//traitement du formulaire
 	if(isset($_POST['verdict'])){include('connexion.php');
 		$id_user = $_SESSION["id_user"];
 		$id_qcm = $_SESSION["id_qcm"];
+		$total_questions = $_SESSION['indice_question'];
 
-
+//requete sur la valeur 'vrai' des reponses proposées aux question du qcm en cours par user en cours
 		$req = $linkpdo->query("SELECT COUNT(*) as note from question, reponse, contenir, qcm, a_rempli, `user`
 		where `qcm`.`id_qcm_fk` = $id_qcm
 		and `user`.`id_user` = $id_user
 		
 		and `a_rempli`.`id_qcm_fk`= `qcm`.`id_qcm_fk`
+		and `a_rempli`.`id_user_fk`= `user`.`id_user`
+		and `a_rempli`.`id_reponse_fk` = `reponse`.`id_reponse`
+		
 		and `contenir`.`id_qcm_fk`= `qcm`.`id_qcm_fk`
 		and `contenir`.`id_question_fk`= `reponse`.`id_question_fk`
 		and `reponse`.`id_question_fk` = `question`.`id_question`
-		
-		and `a_rempli`.`id_user_fk`= `user`.`id_user`
-		and `a_rempli`.`id_reponse_fk` = `reponse`.`id_reponse`
-		and validite = 0");
 	
+		and validite = 1");
 		$data = $req->fetch();
-		echo ("votre résultat est le suivant : ".$data['note']." / ".$_SESSION['indice_question']);
+//affichage de la note
+		echo ("Bravo ! votre résultat est le suivant : ".$data['note']." / ".$total_questions);
+		$note = $data['note'];
+
+//insertion de la note dans la table notation
+		$notation = "INSERT INTO `notation`(`id_user_fk`, `id_qcm_fk`, `note_obtenue_notation`) 
+		VALUES ($id_user,$id_qcm,$note)";
+		$linkpdo->exec($notation);
 		}
 	?>
 	
