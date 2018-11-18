@@ -6,7 +6,6 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 </head>
-
 <body>
 <!--HTML TRAITEMENT DU FORMULAIRE SUR CETTE PAGE-->
 	<form action="qcm_ajouter_1question.php" method="POST">
