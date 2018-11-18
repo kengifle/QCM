@@ -14,7 +14,7 @@
 				<legend>Bonjour.</legend>
 				<div><input type="text" name="login" value="entrez votre nom svp"></div>
 				<div><input type="password" name="password" value="mdp_svp"></div>
-				<div><input type="submit" name="validationLogin" value="valider"></div>
+				<div><input type="submit" name="validation_login" value="valider"></div>
 			</fieldset>
 		</form>
 	</div>
@@ -25,14 +25,15 @@
 		//$data récupère le résultat de la requête, si il y en a un, sous forme de tableau
 		//pas besoin de parcours : si $data existe, authentification ok-->
 	<?php
-			if(isset($_POST['validationLogin'])){
+			if(isset($_POST['validation_login'])){
 				include('connexion.php');
-				//requete sur la presence dans la base du combo id_user/loggin avec les user input en entrée
-				$req = $linkpdo->prepare('SELECT role_user, id_user, login_user FROM user WHERE login_user = :login AND mdp_user= :password');
+				//requete préparée sur la presence dans la base du combo id_user/loggin avec les user input en entrée
+				$req = $linkpdo->prepare('SELECT role_user, id_user, login_user
+				FROM user WHERE login_user = :login AND mdp_user= :password');
 				$req->execute(array('login' => $_POST['login'], 'password' => $_POST['password']));
 				$data= $req->fetch();
-				//si acces autorise
 				if ($data) {
+					//si acces autorisé
 					//recuperation du nom, de l'id user et du role user dans des variables de session
 					$_SESSION['login_user'] = $data['login_user'];
 					$_SESSION['role_user'] = $data['role_user'];
