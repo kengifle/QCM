@@ -59,17 +59,29 @@ for ($i = $nbre_de_questions; $i >0; $i --){
 		and validite = 1");
 		$data = $req->fetch();
 //affichage de la note
-		echo ("Bravo ! votre résultat est le suivant : ".$data['note']." / ".$total_questions);
 		$note = $data['note'];
-
+		$note_qcm = ($note/$total_questions)*20;
+		echo "Bravo ! votre résultat est le suivant : ".$note." / ".$total_questions;
+		 echo "<br>";
+		echo "Votre note est la suivante : ".$note_qcm." / 20 ";
+		
 //insertion de la note dans la table notation
-		$notation = "INSERT INTO `notation`(`id_user_fk`, `id_qcm_fk`, `note_obtenue_notation`) 
-		VALUES ($id_user,$id_qcm,$note)";
-		$linkpdo->exec($notation);
+//si note déjà présente pour le combo qcm/user, la note est mise à jour
+//sinon elle est ajoutée
+		$recuperer_note_existante = $linkpdo->query("SELECT * from notation where id_qcm_fk= $id_qcm and id_user_fk = $id_user");
+		$data= $recuperer_note_existante->fetch();
+		if($data) { 
+			echo ("Nouvelle note !! vous avez déjà passé ce qcm");
+			$maj_note = "UPDATE `notation` SET `note_obtenue_notation`= $note_qcm where id_qcm_fk= $id_qcm and id_user_fk = $id_user";
+			$linkpdo->exec($maj_note);
 		}
+		else {
+			echo ("votre note a été enregistrée");
+			$nouvelle_note = "INSERT INTO `notation`(`id_user_fk`, `id_qcm_fk`, `note_obtenue_notation`) 
+			VALUES ($id_user,$id_qcm,$note_qcm)";
+			$linkpdo->exec($nouvelle_note);
+		}
+	}
 	?>
-	
-	
-	
 	</body>
 	</html>
