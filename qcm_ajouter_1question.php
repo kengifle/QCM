@@ -4,10 +4,14 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Ajouter question</title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link rel="stylesheet" href="global.css">
 </head>
 <body>
 <!--HTML TRAITEMENT DU FORMULAIRE SUR CETTE PAGE-->
+	<h5 class="mb-4">Sélectionnez un QCM et associez-y des questions</h5>
 	<form action="qcm_ajouter_1question.php" method="POST">
 		<?php
 				include('connexion.php');
@@ -30,7 +34,7 @@
 					echo '<option value="' . $data['id_question'] . '">' . $data['label_question'] . '</option>';
 					}?>
 		</select>
-		<input type="submit" name="ajouter_question" value="ajouter cette question">
+		<input class="btn btn-primary ml-2 mb-1" type="submit" name="ajouter_question" value="Ajouter cette question">
 	</form>
 
 	<!--PHP TRAITEMENT DU FORMULAIRE DE CETTE PAGE-->
@@ -41,7 +45,7 @@
 				///Exécution de la requête
 			$req->execute(array('id_question' => $id_question_a_ajouter,'id_qcm_fk' => $id_qcm_a_modifier));
 	}?>
-
+	<button class="btn btn-link mt-4" onclick="window.history.back()">Retour</button>
 </body>
 <?php include "footer.html"?>
 

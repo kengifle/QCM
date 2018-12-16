@@ -5,7 +5,10 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>affichage questions</title>
+	<title>Visualisation</title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link rel="stylesheet" href="global.css">
 </head>
 
 <body>
@@ -22,7 +25,7 @@ foreach ($reponse as $data)
 {echo '<option value="' . $data['id_qcm_fk'] . '">' . $data['label_qcm'] . '</option>';}
 ?>
 		</select>
-		<input type="submit" value="afficher ce qcm ?" name="validation_recherche_qcm">
+		<input class="btn btn-primary mb-1 ml-2" type="submit" value="Afficher ce QCM" name="validation_recherche_qcm">
 	</form>
 	<a href="accueil_prof.php">Retour</a>
 </body>
@@ -48,7 +51,7 @@ foreach ($reponse as $data)
 <br>
 <table border="1">
 	<tbody>
-		<table>
+		<table class="table text-center">
 			<!--question-->
 			<tr>
 				<td>
@@ -64,11 +67,11 @@ foreach ($reponse as $data)
 			<?php $indice_question++;?>
 		</table>
 		<!--réponses-->
-		<p>Reponses possibles :</p>
+		<p>Réponses possibles :</p>
 		<?php $req_afficher_reponses = $linkpdo->query("SELECT distinct  `id_reponse`, `label_reponse`, `validite`, `reponse`.`id_question_fk` FROM question, qcm, contenir, reponse where $question = `reponse`.`id_question_fk` and `reponse`.`id_question_fk`= `contenir`.`id_question_fk` and `contenir`.`id_qcm_fk` = $this_id_qcm");
 		$indice_reponse = 1;
 		while ($donnees = $req_afficher_reponses->fetch()) {?>
-		<table>
+		<table class="table text-center">
 			<thead></thead>
 			<tbody>
 				<tr>
@@ -87,6 +90,8 @@ foreach ($reponse as $data)
 		</table>
 	</tbody>
 </table>
+
+<button class="btn btn-link mt-4" onclick="window.history.back()">Retour</button>
 <?php } ?>
 <?php } ?>
 <?php

@@ -1,0 +1,12 @@
+.row {
+	margin-left: 0;
+}
+
+body {
+	margin: 20px;
+}
+
+.center-element {
+    margin: auto;
+    max-width: 50%
+}

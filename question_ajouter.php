@@ -13,13 +13,17 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Ajouter une question</title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="global.css">
 </head>
 
 <body>
+	<h5>Créer une nouvelle question</h5>
 	<!--formulaire : traitement du formulaire intégré sur la page en cours-->
 	<form action="question_ajouter.php" method="POST">
-		<label for="title">Theme :</label>
-		<div>
+		<label for="title">Thème :</label>
+		<div  class="mb-4">
 
 			<?php
 				include('connexion.php');
@@ -34,29 +38,38 @@
 				?></select>
 		</div>
 		<!--question-->
-		<label for="title">QUESTION :</label>
-		<div><input type="text" name="texte_question" value="écrivez une question"></div>
-		<label for="title">REPONSES :</label>
+		<label for="title">Question :</label>
+		<div class="mb-4"><input type="text" name="texte_question" value="Ecrivez une question"></div>
+
+		<label for="title">Réponses :</label>
 		<!--reponse 1-->
-		<div><input type="text" name='label_reponse1' value="écrivez la réponse 1"></div>
-		<div><input type="radio" name="bonne_reponse1" value="1" checked> Vrai<br>
-			<input type="radio" name="bonne_reponse1" value="0"> Faux<br></div>
+		<div class="row mb-2">
+			<input type="text" name='label_reponse1' value="Ecrivez la réponse 1">
+			<input class="ml-2" type="radio" name="bonne_reponse1" value="1" checked> Vrai
+			<input class="ml-2" type="radio" name="bonne_reponse1" value="0"> Faux
+		</div>
 		<!--reponse 2-->
-		<div><input type="text" name='label_reponse2' value="écrivez la réponse 2"></div>
-		<div><input type="radio" name="bonne_reponse2" value="1" checked> Vrai<br>
-			<input type="radio" name="bonne_reponse2" value="0"> Faux<br></div>
+		<div class="row mb-2">
+			<input type="text" name='label_reponse2' value="Ecrivez la réponse 2">
+			<input class="ml-2" type="radio" name="bonne_reponse2" value="1" checked> Vrai
+			<input class="ml-2" type="radio" name="bonne_reponse2" value="0"> Faux
+		</div>
 		<!--reponse 3-->
-		<div><input type="text" name='label_reponse3' value="écrivez la réponse 3"></div>
-		<div><input type="radio" name="bonne_reponse3" value="1" checked> Vrai<br>
-			<input type="radio" name="bonne_reponse3" value="0"> Faux<br></div>
+		<div class="row mb-2">
+			<input type="text" name='label_reponse3' value="Ecrivez la réponse 3">
+			<input class="ml-2" type="radio" name="bonne_reponse3" value="1" checked> Vrai
+			<input class="ml-2" type="radio" name="bonne_reponse3" value="0"> Faux
+		</div>
 		<!--reponse 4-->
-		<div><input type="text" name='label_reponse4' value="écrivez la réponse 4"></div>
-		<div><input type="radio" name="bonne_reponse4" value="1" checked> Vrai<br>
-			<input type="radio" name="bonne_reponse4" value="0"> Faux<br></div>
+		<div class="row mb-2">
+			<input type="text" name='label_reponse4' value="Ecrivez la réponse 4">
+			<input class="ml-2" type="radio" name="bonne_reponse4" value="1" checked> Vrai
+			<input class="ml-2" type="radio" name="bonne_reponse4" value="0"> Faux
+		</div>
 		<!--submit-->
-		<input type="submit" name="validation_question" value="ajouter la question">
+		<input class="btn btn-primary my-3" type="submit" name="validation_question" value="Sauvegarder la question">
 	</form>
-	<button onclick="window.history.back()">Retour</button>
+	<button class="btn btn-link" onclick="window.history.back()">Retour</button>
 
 </body>
 <?php include "footer.html"?>

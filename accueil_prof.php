@@ -3,82 +3,35 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>ACCUEIL : Professeurs</title>
-	<?php include "header.html"?> 
-</head>
+	<title>Accueil</title>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>QcMania</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
- 
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="global.css">
 </head>
 <body>
+	<!--utilisation de la variable de session nom_user-->
+	<p><?php echo 'Bienvenue, Mme ou M. '.$_SESSION['login_user'].', sur notre service de gestion de questionnaires à choix multiples.';?></p>
+	<p>Vous êtes actuellement connecté(e) en tant qu'enseignant(e).</p>
 
-<div class="container">
-  <div class="jumbotron">
-    <h1>QcMania</h1>      
-    	<!--utilisation de la variable de session nom_user-->
-	<p><a><?php echo 'Bienvenue, Mme ou M  '.$_SESSION['login_user'].' , sur ce playground de QCM.';?></a></p>
-	<p>Vous êtes actuellement connecté(e) en tant qu'enseignant.</p>
-  </div>
-  <div class = row>
-  <div class="col-md 4">
-  <div class="page-header">
-    <h1>Questions</h1>      
-  
-  <p>Entrez les questions de votre choix.</p>      
-  <p>Modifiez des questions existantes.</p> 
-  <p><a href="question_ajouter.php">Voulez vous saisir une question?</a><p>
+	<h5>QUESTIONS</h5>
+	<div class="mb-4">
+		<input type="button" class="btn btn-primary" onclick="location.href='question_ajouter.php';" value="Créer une nouvelle question" />
+		<input type="button" class="btn btn-primary" onclick="location.href='question_afficher_toutes.php';" value="Visualiser toutes les questions" />
+		<input type="button" class="btn btn-primary" onclick="location.href='question_afficher1question.php';" value="Visualiser une question" />
+	</div>
 
-		<form action="question_afficher_toutes.php" method="POST">
-		<p>Voulez-vous afficher les questions pour un thème particulier?</a></p>
-		<div>
-		<?php
-	include('connexion.php');
-	//select pour le theme, values = id_theme
-	$reponse = $linkpdo->query("SELECT id_theme, label_theme FROM theme");?>
-<select title="choississez dans la liste" name="id_theme">
-	<?php
-			foreach ($reponse as $data)
-			{
-				echo '<option value="' . $data['id_theme'] . '">' . $data['label_theme'] . '</option>';
-			}
-			?></select>
-			<input type="submit" name="ok" value ="afficher">
-</div>
-		</form>
-		<p><a href="question_afficher1question.php">Voulez-vous afficher UNE question en particulier?</a></p>
-</div></div>
-<div class="col-md 4">
-  <div class="page-header">
-    <h1>Qcm</h1>      
-  
-  <p>Créez vos qcm sur mesure à partir de la banque de questions</p>
-  <p>Publiez vos qcm!</p>   
-  <p>Consultez les qcm de vos collègues.</p>
-  <p><a href="qcm_afficher1qcm.php">Voulez-vous afficher UN Qcm ?</a></p>
-		<p><a href="qcm_ajouter.php">Voulez vous créer un nouveau Qcm ?</a></p>
-		<p><a href="qcm_ajouter_1question.php">Voulez ajouter une question à un Qcm ?</a></p>   
-</div></div>
-<div class="col-md 4">
-  <div class="page-header">
-    <h1>Notes</h1>      
-  
-  <p>Consultez les notes de vos élèves.</p>            
-</div></div>
-</div>
 
-  <p></p>      
-  <p></p>      
-</div>
+	<h5>QCM</h5>
+	<div class="mb-4">
+		<input type="button" class="btn btn-primary" onclick="location.href='qcm_ajouter.php';" value="Créer un nouveau QCM" />
+		<input type="button" class="btn btn-primary" onclick="location.href='qcm_ajouter_1question.php';" value="Ajouter une question à un QCM" />
+		<input type="button" class="btn btn-primary" onclick="location.href='qcm_afficher1qcm.php';" value="Visualiser un QCM" />
+	</div>
 
+	<h5>Thèmes</h5>
+	<div>
+		<input type="button" class="btn btn-primary" onclick="location.href='themes.php';" value="Gérer les thèmes" />
+	</div>
 </body>
-</html>
-
-
-
 <?php include "footer.html"?>
 </html>

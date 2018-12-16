@@ -42,6 +42,7 @@ foreach ($reponse as $data)
 		FROM `contenir`, `question`
 		WHERE `id_qcm_fk` = $this_id_qcm
 		and `contenir`.`id_question_fk`= `question`.`id_question`");
+
 	?>
 	<br>
 	<?php if (!$req_afficher_qcm) {echo ("ERREUR SYSTEME") ;}

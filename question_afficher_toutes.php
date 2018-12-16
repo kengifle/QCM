@@ -3,24 +3,29 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<title>affichage questions</title>
+		<title>Liste questions</title>
+
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link rel="stylesheet" href="global.css">
 	</head>
 	<body>
-	<?php include('connexion.php');?>
-		<table>
+		<h5 class="mb-4">Liste des questions</h5>
+
+		<form action="question_afficher_toutes.php" method="POST ">
+		</form>
+		<table class="table text-center">
 			<thead>
 				<tr>
-					<th>No</th>
-					<th>question</th>
-					<th>enseignant :</th>
-					<th>theme</th>
+					<th>Id</th>
+					<th>Question</th>
+					<th>Utilisateur</th>
+					<th>Id Thème</th>
 				</tr>
 			</thead>
 			<tbody>
-			<?php $id_theme= $_POST["id_theme"];
-				echo ('yo');
-				echo $_POST['id_theme'];
-				$reponse = $linkpdo->query("SELECT * FROM question where $id_theme=id_theme_fk");
+				<?php include('connexion.php');?>
+				<?php
+				$reponse = $linkpdo->query("SELECT * FROM question");
 				// On affiche le resultat dans le tableau
 				while ($donnees = $reponse->fetch()) {?>	
 				<tr>
@@ -34,30 +39,9 @@
 				$reponse->closeCursor();
 				?>
 			</tbody></table>
+
+
+		<button class="btn btn-link" onclick="window.history.back()">Retour</button>
 		</body>
-
-
-		<?php include('connexion.php');?>
-	<form action="question_afficher1question.php" method="POST">
-	<!--affichage et choix du theme-->
-	
-		<!--affichage de la liste des questions dans un select : values = id question-->
-		<?php $reponse = $linkpdo->query("SELECT id_question, label_question FROM question where $id_theme = id_theme_fk");?>
-		<select title="liste_de_questions" name="liste_de_questions">
-			<?php foreach ($reponse as $data){
-				echo '<option value="' . $data['id_question'] . '">' . $data['label_question'] . '</option>';
-			}
-			?></select>
-		<input type="submit" value="afficher la question?" name="validation_recherche_question">
-	</form>
-
-		</tbody>
-	</table>
-	</tbody>
-	</table>
-
-
-
-
 		<?php include "footer.html"?>
 	</html>

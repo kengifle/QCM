@@ -3,15 +3,16 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>affichage questions</title>
-	<?php include "header.html"?> 
+	<title>Visualisation questions</title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link rel="stylesheet" href="global.css">
 </head>
 <!--HTML***FORMULAIRE TRAITE SUR CETTE PAGE-->
 <body>
 	<?php include('connexion.php');?>
+	<h5 class="mb-4">Sélectionnez une question pour la visualiser</h5>
 	<form action="question_afficher1question.php" method="POST">
-	<!--affichage et choix du theme-->
-	
 		<!--affichage de la liste des questions dans un select : values = id question-->
 		<?php $reponse = $linkpdo->query("SELECT id_question, label_question FROM question");?>
 		<select title="liste_de_questions" name="liste_de_questions">
@@ -19,28 +20,24 @@
 				echo '<option value="' . $data['id_question'] . '">' . $data['label_question'] . '</option>';
 			}
 			?></select>
-		<input type="submit" value="afficher la question?" name="validation_recherche_question">
+		<input class="btn btn-primary ml-2 mb-1" type="submit" value="Afficher la question" name="validation_recherche_question">
 	</form>
-
-
-
-
-	
 </body>
-<?php include "footer.html"?>
 </html>
 
 <!--PHP***TRAITEMENT DU FORMULAIRE DE CETTE PAGE-->
 <?php if(isset($_POST['validation_recherche_question'])){include('connexion.php');
 	$this_id_question=  $_POST['liste_de_questions'];
 	$req_afficher_question = $linkpdo->query("SELECT * FROM question where id_question = $this_id_question");?>
-	<table>
+	
+	<h5 class="my-4">Question :</h5>
+	<table class="table text-center">
 		<thead>
 			<tr>
-				<th>No</th>
-				<th>question</th>
-				<th>enseignant</th>
-				<th>theme</th>
+				<th>Id</th>
+				<th>Question</th>
+				<th>Utilisateur</th>
+				<th>Id Thème</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -62,12 +59,12 @@
 				</td>
 			</tr>
 			<?php } ?>
-			<table>
+			<table class="table text-center">
 				<thead>
 					<tr>
-						<th>reponse</th>
-						<th>validite</th>
-						<th>No question</th>
+						<th>Réponse</th>
+						<th>Validité</th>
+						<th>Id Question</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -97,13 +94,5 @@
 	</tbody>
 	</table>
 
-	<form action="question_modifier.php" method="POST">
-	<!--affichage et choix du theme-->
-	
-		<!--affichage de la liste des questions dans un select : values = id question-->
-		<input type="hidden" name ="question_a_modifier" value="<?php echo $this_id_question;?>">
-		<input type="submit" value="modifier cette question?" name="modifier_question">
-	</form>
-
-
-	
+<button class="btn btn-link" onclick="window.history.back()">Retour</button>
+<?php include "footer.html"?>

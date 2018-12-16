@@ -2,29 +2,45 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<title>Login</title>
 
-<body>
-	<div>
-		<form action="index.php" method="post">
-			<fieldset>
-				<legend>Bonjour.</legend>
-				<div><input type="text" name="login" value="entrez votre nom svp"></div>
-				<div><input type="password" name="password" value="mdp_svp"></div>
-				<div><input type="submit" name="validation_login" value="valider"></div>
-			</fieldset>
-		</form>
-	</div>
-	<!--//si bouton submit :
-		//connexion à la base
-		//preparation de requête sur la présence d'une ligne 'login + mdp' dans la base
-		//Exécution de la requête avec les paramètres passés sous forme de tableau associatif
-		//$data récupère le résultat de la requête, si il y en a un, sous forme de tableau
-		//pas besoin de parcours : si $data existe, authentification ok-->
-	<?php
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link rel="stylesheet" href="global.css">
+
+	</head>
+
+	<body>
+		<div class="center-element">
+			<form action="index.php" method="post">
+				<legend class="center-element">Bienvenue</legend>
+				<div class="center-element"><label>Identifiant</label><input id="selectOnFocus1" type="text" name="login"></div>
+				<div class="center-element"><label>Mot de passe</label><input id="selectOnFocus2" type="password" name="password"></div>
+				<div class="center-element"><input type="submit" name="validation_login" value="Se connecter"></div>
+			</form>
+		</div>
+
+
+		<script>
+			document.getElementById("selectOnFocus1").addEventListener("focus", function selectText($event) {
+					console.log("cuicui");
+					$event.target.select();
+				}
+			);
+			document.getElementById("selectOnFocus2").addEventListener("focus", function selectText($event) {
+					console.log("cuicui");
+					$event.target.select();
+				}
+			);
+		</script>
+		<!--//si bouton submit :
+			//connexion à la base
+			//preparation de requête sur la présence d'une ligne 'login + mdp' dans la base
+			//Exécution de la requête avec les paramètres passés sous forme de tableau associatif
+			//$data récupère le résultat de la requête, si il y en a un, sous forme de tableau
+			//pas besoin de parcours : si $data existe, authentification ok-->
+		<?php
 			if(isset($_POST['validation_login'])){
 				include('connexion.php');
 				//requete préparée sur la presence dans la base du combo id_user/loggin avec les user input en entrée
@@ -50,8 +66,11 @@
 							echo 'Erreur. Vérifiez vos identifiants puis essayez à nouveau.';
 							break;
 					}
-				} else { echo('Erreur. Vérifiez vos identifiants puis essayez à nouveau.');}?>
-</body>
-<?php }?>
+				} else {
+					echo('Erreur. Vérifiez vos identifiants puis essayez à nouveau.');
+				}
+			}
+		?>
+	</body>
 
 </html>
