@@ -4,11 +4,14 @@
 <head>
 	<meta charset="UTF-8">
 	<title>affichage questions</title>
+	<?php include "header.html"?> 
 </head>
 <!--HTML***FORMULAIRE TRAITE SUR CETTE PAGE-->
 <body>
 	<?php include('connexion.php');?>
 	<form action="question_afficher1question.php" method="POST">
+	<!--affichage et choix du theme-->
+	
 		<!--affichage de la liste des questions dans un select : values = id question-->
 		<?php $reponse = $linkpdo->query("SELECT id_question, label_question FROM question");?>
 		<select title="liste_de_questions" name="liste_de_questions">
@@ -18,6 +21,11 @@
 			?></select>
 		<input type="submit" value="afficher la question?" name="validation_recherche_question">
 	</form>
+
+
+
+
+	
 </body>
 <?php include "footer.html"?>
 </html>
@@ -31,7 +39,7 @@
 			<tr>
 				<th>No</th>
 				<th>question</th>
-				<th>utilisateur</th>
+				<th>enseignant</th>
 				<th>theme</th>
 			</tr>
 		</thead>
@@ -88,3 +96,14 @@
 	</table>
 	</tbody>
 	</table>
+
+	<form action="question_modifier.php" method="POST">
+	<!--affichage et choix du theme-->
+	
+		<!--affichage de la liste des questions dans un select : values = id question-->
+		<input type="hidden" name ="question_a_modifier" value="<?php echo $this_id_question;?>">
+		<input type="submit" value="modifier cette question?" name="modifier_question">
+	</form>
+
+
+	
