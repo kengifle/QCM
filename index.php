@@ -5,39 +5,40 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<?php include "header.html"?> 
+	<?php include "header.php"?>
 </head>
 
 <body>
-<body>
-    <div id="login">
-        <h3 class="text-center text-white pt-5">QCMax</h3>
-        <div class="container">
-            <div id="login-row" class="row justify-content-center align-items-center">
-                <div id="login-column" class="col-md-6">
-                    <div id="login-box" class="col-md-12">
-                        <form id="login-form" class="form" action="index.php" method="post">
-                            <h3 class="text-center text-info">Login</h3>
-                            <div class="form-group">
-                                <label for="username" class="text-info">Utilisateur:</label><br>
-                                <input type="text" name="login" id="username" class="form-control" placeholder="entrez votre identifiant">
-                            </div>
-                            <div class="form-group">
-                                <label for="password" class="text-info">Mot de passe:</label><br>
-                                <input type="text" name="password" id="password" placeholder="entrez votre mot de passe" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" name="validation_login" class="btn btn-info btn-md" value="envoyer">
-                            </div>
-                            <div id="register-link" class="text-right">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
+
+	<body>
+		<div id="login">
+			<h3 class="text-center text-white pt-5">QCMax</h3>
+			<div class="container">
+				<div id="login-row" class="row justify-content-center align-items-center">
+					<div id="login-column" class="col-md-6">
+						<div id="login-box" class="col-md-12">
+							<form id="login-form" class="form" action="index.php" method="post">
+								<h3 class="text-center text-info">Login</h3>
+								<div class="form-group">
+									<label for="username" class="text-info">Utilisateur:</label><br>
+									<input type="text" name="login" id="username" class="form-control" placeholder="entrez votre identifiant">
+								</div>
+								<div class="form-group">
+									<label for="password" class="text-info">Mot de passe:</label><br>
+									<input type="text" name="password" id="password" placeholder="entrez votre mot de passe" class="form-control">
+								</div>
+								<div class="form-group">
+									<input type="submit" name="validation_login" class="btn btn-info btn-md" value="envoyer">
+								</div>
+								<div id="register-link" class="text-right">
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
 	<!--//si bouton submit :
 		//connexion à la base
 		//preparation de requête sur la présence d'une ligne 'login + mdp' dans la base

@@ -7,16 +7,20 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Félicitations</title>
-	<?php include "header.html"?> 
+	<?php include "header.php"?>
 </head>
+
 <body>
-	<p>Vous venez de répondre au questionnaire : <?php echo $_SESSION['id_qcm'];?></p>
-<?php if(isset($_POST['repondre_question'])){include('connexion.php');
+	<p>Vous venez de répondre au questionnaire :
+		<?php echo $_SESSION['id_qcm'];?>
+	</p>
+	<?php if(isset($_POST['repondre_question'])){include('connexion.php');
 
 $nbre_de_questions = $_SESSION['indice_question'];
 $id_user = $_SESSION["id_user"];
@@ -32,11 +36,11 @@ for ($i = $nbre_de_questions; $i >0; $i --){
 	$linkpdo->exec($req);}}
 
 	?>
-	<form action="traitement_valider_reponse.php" method = "POST">
-		<input type="submit" name ="verdict" value = "connaître votre note? ">
+	<form action="traitement_valider_reponse.php" method="POST">
+		<input type="submit" name="verdict" value="connaître votre note? ">
 	</form>
 	<br><br>
-<?php
+	<?php
 	//traitement du formulaire
 	if(isset($_POST['verdict'])){include('connexion.php');
 		$id_user = $_SESSION["id_user"];
@@ -82,6 +86,8 @@ for ($i = $nbre_de_questions; $i >0; $i --){
 			$linkpdo->exec($nouvelle_note);
 		}
 	}
+	include ("footer.html");
 	?>
-	</body>
-	</html>
+</body>
+
+</html>
