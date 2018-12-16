@@ -4,15 +4,16 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Nouveau QCM</title>
+		<?php include "header.html"?> 
 	</head>
 	<body>
-		<p>Vous allez saisir un nouveau questionnaire.</p>
+		<legend>nouveau questionnaire</legend>
 		<p>Entrez un nom pour votre questionnaire svp</p>
-		<form action="qcm_ajouter.php" method ="POST">
+		<form class="form" action="qcm_ajouter.php" method ="POST">
 			<input type="texte" name="nom_qcm" placeholder="par ex. Maths TP3">
-			<input type="submit" name= "ok">
+			<input class="btn btn-primary" type="submit" name= "ok" value ="nouveau qcm">
 		</form>
-		<p><a href="qcm_ajouter_1question.php">Voulez ajouter une question à ce Qcm ?</a></p>
+		<p><a href="qcm_ajouter_1question.php">Voulez-vous ajouter une question à un Qcm ?</a></p>
 	</body>
 	<?php include "footer.html"?>
 </html>
