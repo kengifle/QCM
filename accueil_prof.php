@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>QcMania</title>
+  <title>QcManiax</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
  
@@ -19,7 +19,7 @@
 
 <div class="container">
   <div class="jumbotron">
-    <h1>QcMania</h1>      
+    <h1>QCManiax</h1>      
     	<!--utilisation de la variable de session nom_user-->
 	<p><a><?php echo 'Bienvenue, Mme ou M  '.$_SESSION['login_user'].' , sur ce playground de QCM.';?></a></p>
 	<p>Vous êtes actuellement connecté(e) en tant qu'enseignant.</p>
@@ -29,9 +29,8 @@
   <div class="page-header">
     <h1>Questions</h1>      
   
-  <p>Entrez les questions de votre choix.</p>      
-  <p>Modifiez des questions existantes.</p> 
-  <p><a href="question_ajouter.php">Voulez vous saisir une question?</a><p>
+<p><a href="question_afficher1question.php">Voulez-vous afficher une question en stock?</a></p>
+  <p><a href="question_ajouter.php">Voulez vous saisir une nouvelle question?</a><p>
 
 		<form action="question_afficher_toutes.php" method="POST">
 		<p>Voulez-vous afficher les questions pour un thème particulier?</a></p>
@@ -50,16 +49,14 @@
 			<input type="submit" name="ok" value ="afficher">
 </div>
 		</form>
-		<p><a href="question_afficher1question.php">Voulez-vous afficher UNE question en particulier?</a></p>
+		
 </div></div>
 <div class="col-md 4">
   <div class="page-header">
     <h1>Qcm</h1>      
   
-  <p>Créez vos qcm sur mesure à partir de la banque de questions</p>
-  <p>Publiez vos qcm!</p>   
-  <p>Consultez les qcm de vos collègues.</p>
-  <p><a href="qcm_afficher1qcm.php">Voulez-vous afficher UN Qcm ?</a></p>
+
+  <p><a href="qcm_afficher1qcm.php">Voulez-vous afficher un Qcm en stock?</a></p>
 		<p><a href="qcm_ajouter.php">Voulez vous créer un nouveau Qcm ?</a></p>
 		<p><a href="qcm_ajouter_1question.php">Voulez ajouter une question à un Qcm ?</a></p>   
 </div></div>

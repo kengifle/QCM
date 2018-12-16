@@ -13,19 +13,29 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Ajouter une question</title>
+	<?php include "header.html"?> 
 </head>
 
 <body>
-	<!--formulaire : traitement du formulaire intégré sur la page en cours-->
-	<form action="question_ajouter.php" method="POST">
-		<label for="title">Theme :</label>
-		<div>
 
+<div class="row">
+  <div class="col-sm-3"></div>
+  <div class="col-sm-6">
+  
+ 
+	<!--formulaire : traitement du formulaire intégré sur la page en cours-->
+	<form class="form" action="question_ajouter.php" method="POST">
+    <legend>Rédiger une nouvelle question</legend>
+		
+		<div class="form-group" >
+			
+		
 			<?php
 				include('connexion.php');
 				//select pour le theme, values = id_theme
 				$reponse = $linkpdo->query("SELECT id_theme, label_theme FROM theme");?>
-			<select title="choississez dans la liste" name="id_theme">
+			<label for="title">THEME :</label>
+			<select class="form-control" title="choisissez un thème dans la liste" name="id_theme">
 				<?php
 						foreach ($reponse as $data)
 						{
@@ -35,28 +45,32 @@
 		</div>
 		<!--question-->
 		<label for="title">QUESTION :</label>
-		<div><input type="text" name="texte_question" value="écrivez une question"></div>
-		<label for="title">REPONSES :</label>
+		<div><input class="form-control" type="text" name="texte_question" placeholder="écrivez une question"></div>
+		<br><label for="title">REPONSES :</label>
 		<!--reponse 1-->
-		<div><input type="text" name='label_reponse1' value="écrivez la réponse 1"></div>
-		<div><input type="radio" name="bonne_reponse1" value="1" checked> Vrai<br>
-			<input type="radio" name="bonne_reponse1" value="0"> Faux<br></div>
+		<div><input class="form-control" type="text" name='label_reponse1' placeholder="écrivez la réponse 1"></div>
+		<div><input  type="radio" class="radio-inline"name="bonne_reponse1" value="1" checked> Vrai
+			<input  type="radio" class="radio-inline" name="bonne_reponse1" value="0"> Faux</div><br>
 		<!--reponse 2-->
-		<div><input type="text" name='label_reponse2' value="écrivez la réponse 2"></div>
-		<div><input type="radio" name="bonne_reponse2" value="1" checked> Vrai<br>
-			<input type="radio" name="bonne_reponse2" value="0"> Faux<br></div>
+		<div><input class="form-control" type="text" name='label_reponse2' placeholder="écrivez la réponse 2"></div>
+		<div><input  type="radio" class="radio-inline" name="bonne_reponse2" value="1" checked> Vrai
+			<input type="radio" class="radio-inline" name="bonne_reponse2" value="0"> Faux</div><br>
 		<!--reponse 3-->
-		<div><input type="text" name='label_reponse3' value="écrivez la réponse 3"></div>
-		<div><input type="radio" name="bonne_reponse3" value="1" checked> Vrai<br>
-			<input type="radio" name="bonne_reponse3" value="0"> Faux<br></div>
+		<div><input class="form-control" type="text" name='label_reponse3' placeholder="écrivez la réponse 3"></div>
+		<div><input  type="radio" class="radio-inline" name="bonne_reponse3" value="1" checked> Vrai
+			<input  type="radio" class="radio-inline" name="bonne_reponse3" value="0"> Faux</div><br>
 		<!--reponse 4-->
-		<div><input type="text" name='label_reponse4' value="écrivez la réponse 4"></div>
-		<div><input type="radio" name="bonne_reponse4" value="1" checked> Vrai<br>
-			<input type="radio" name="bonne_reponse4" value="0"> Faux<br></div>
+		<div><input class="form-control" type="text" name='label_reponse4' placeholder="écrivez la réponse 4"></div>
+		<div><input type="radio" class="radio-inline" name="bonne_reponse4" value="1" checked> Vrai
+			<input type="radio" class="radio-inline" name="bonne_reponse4" value="0"> Faux</div><br>
 		<!--submit-->
-		<input type="submit" name="validation_question" value="ajouter la question">
+		<input type="submit" class ="btn btn-primary"name="validation_question" value="ajouter la question">
+		<br>
 	</form>
-	<button onclick="window.history.back()">Retour</button>
+	</div>
+	<div class="col-sm-3"></div>
+	</div>
+	
 
 </body>
 <?php include "footer.html"?>
