@@ -9,17 +9,20 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<title>Modifier une question</title>
-	<?php include "header.html"?> 
+	<?php include "header.php"?>
 </head>
+
 <body>
 	<!--formulaire : traitement du formulaire intégré sur la page en cours-->
-    <?php if(isset($_POST['modifier_question'])) {
+	<?php if(isset($_POST['modifier_question'])) {
     $question_a_modifier = $_POST['question_a_modifier'];?>
 	<form action="question_valider_modifications.php" method="POST">
-		<label for="title">Theme : <?php echo $_POST['theme_question'];?></label>
+		<label for="title">Theme :
+			<?php echo $_POST['theme_question'];?></label>
 		<div>
 			<?php
 				include('connexion.php');
@@ -29,16 +32,16 @@
                ?>
 			<tr>
 		</div>
-<?php
+		<?php
 $req_afficher_reponses = $linkpdo->query("SELECT label_reponse, validite FROM reponse where id_question_fk = $question_a_modifier");
                 // On affiche les réponses correspondant à la question
                 $result2 = $req_afficher_reponses->fetchAll(PDO::FETCH_COLUMN);
                 ;?>
-				</tbody>
-			</table>
+		</tbody>
+		</table>
 		<!--question-->
 		<label for="title">QUESTION :</label>
-		<div><input type="text" name="texte_question" placeholder ="<?php echo $result;?>"></div>
+		<div><input type="text" name="texte_question" placeholder="<?php echo $result;?>"></div>
 		<label for="title">REPONSES :</label>
 		<!--reponse 1-->
 		<div><input type="text" name='label_reponse1' value="<?php echo $result2[0];?>"></div>
@@ -47,7 +50,7 @@ $req_afficher_reponses = $linkpdo->query("SELECT label_reponse, validite FROM re
 		<!--reponse 2-->
 		<div><input type="text" name='label_reponse2' value="<?php echo $result2[1];?>"></div>
 		<div><input type="radio" name="bonne_reponse2" value="1"> Vrai<br>
-			<input type="radio" name="bonne_reponse2" value="0"checked> Faux<br></div>
+			<input type="radio" name="bonne_reponse2" value="0" checked> Faux<br></div>
 		<!--reponse 3-->
 		<div><input type="text" name='label_reponse3' value="<?php echo $result2[2];?>"></div>
 		<div><input type="radio" name="bonne_reponse3" value="1"> Vrai<br>
@@ -60,5 +63,6 @@ $req_afficher_reponses = $linkpdo->query("SELECT label_reponse, validite FROM re
 		<input type="submit" name="ok" value="modifier cette question">
 	</form>
 	<button onclick="window.history.back()">Retour</button>
-</body><?php }?>
+</body>
+<?php }?>
 <?php include "footer.html"?>

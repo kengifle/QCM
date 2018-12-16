@@ -5,19 +5,20 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<?php include "header.html"?> 
+	<?php include "header.php"?>
 </head>
+
 <body>
-	
-	
-<!--HTML TRAITEMENT DU FORMULAIRE SUR CETTE PAGE-->
-<legend>Ajoutez une question à un QCM</legend>
+
+
+	<!--HTML TRAITEMENT DU FORMULAIRE SUR CETTE PAGE-->
+	<legend>Ajoutez une question à un QCM</legend>
 	<form class="form" action="qcm_ajouter_1question.php" method="POST">
 		<p>Choisissez un questionnaire...</p>
 		<?php
 				include('connexion.php');
 				$choix_qcm = $linkpdo->query("SELECT id_qcm_fk, label_qcm FROM qcm");?>
-				
+
 		<!--choix du qcm : select values = id_qcm-->
 		<select title="liste_de_qcm" name="liste_de_qcm">
 			<?php
@@ -39,7 +40,7 @@
 					echo '<option value="' . $data['id_question'] . '">' . $data['label_question'] . '</option>';
 					}?>
 		</select><br><br>
-		<input type="submit" class ="btn btn-primary" name="ajouter_question" value="ajouter cette question">
+		<input type="submit" class="btn btn-primary" name="ajouter_question" value="ajouter cette question">
 	</form>
 
 	<!--PHP TRAITEMENT DU FORMULAIRE DE CETTE PAGE-->
